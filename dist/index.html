@@ -7,9 +7,9 @@
     <title>Your weather</title>
 </head>
 <body>
+
+    <!-- Current day general  info-->
     <div class="content">
-
-
         <div class="search-window">
             <div class="searching">
                 <input type="text" id="location" name="location" placeholder="Search location..."/>
@@ -19,21 +19,32 @@
         </div>
     
         <div id="city-name" class="big-size"></div>
+        <div id='current-temp' class="big-size"></div>
         <div id="current-hour"></div>
-        <div id="current-condition" class="big-size"></div>
-        <div><img id="current-icon" src=""></div>
-        <div class="container"><span class="toggle">C</span>
+        <div class="condition-container">
+            <div id="current-condition" class="big-size"></div>
+            <img id="current-icon" src="">
+        </div>
+        <div class="container"><span class="toggle">&#8451</span>
             <label class="switch" for="checkbox"> 
               <input type="checkbox" id="checkbox"/>
               <div class="slider round"></div>
             </label>
-            <span class="toggle">F</span>
-          </div>
-
-
-
+            <span class="toggle">&#8457</span>
+        </div>
+        
+        <div id='current-wind' class="mid-size"></div>
+        <div id='current-feels' class="mid-size"></div>
+        <div id='current-humidity' class="mid-size"></div>
 
     </div>
+
+    <!-- Current day hour weather-->
+    <div class="hourly">
+        
+    </div>
     <script src="main.js"></script>
+    <script src="https://kit.fontawesome.com/b371bd7be1.js" crossorigin="anonymous"></script>
+
 </body>
 </html>

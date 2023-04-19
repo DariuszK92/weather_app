@@ -1,31 +1,21 @@
 import _ from 'lodash';
 import './style.css';
-import background from './background.jpg'
-import storeWeather from './websites/api';
 import { showWeather } from './websites/api';
+import { storeUnit, unitOnload, storeWeather } from './websites/storage';
 
 
-
-const searchBtn = document.querySelector('#search');
+//Store units (C/F) in local storage
 const unitToggle = document.querySelector('#checkbox');
+unitToggle.addEventListener('click', storeUnit);
 
+// Show units (C/F) onload from local storage
+unitOnload();
+
+
+// Store city in local storage and generate page UI
+const searchBtn = document.querySelector('#search');
 searchBtn.addEventListener('click', storeWeather);
 
 
-function unitChosen() {
-    let statusToggle = localStorage.getItem("toggleTempUnits");
-    if(statusToggle=='false' || statusToggle==null){
-        unitToggle.checked=false
-    } else if(statusToggle=='true') {
-        unitToggle.checked=true
-    }
-}
-
-unitChosen();
+// Generate page UI acc to information from local storage
 showWeather();
-
-function storeUnit() {
-    localStorage.setItem("toggleTempUnits", unitToggle.checked)
-}
-
-unitToggle.addEventListener('click', storeUnit)
