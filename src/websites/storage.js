@@ -3,7 +3,8 @@ import { showWeather } from "./api";
 // Store units (F/C) in local storage
 const unitToggle = document.querySelector('#checkbox');
 export function storeUnit() {
-    localStorage.setItem("toggleTempUnits", unitToggle.checked)
+    localStorage.setItem("toggleTempUnits", unitToggle.checked);
+    showWeather();
 }
 
 export function unitOnload() {

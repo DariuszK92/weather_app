@@ -21,7 +21,7 @@ body {
     background-repeat:   no-repeat;
     background-position: center center;   
     display: grid;
-    grid-template-columns: 270px 1fr;           
+    grid-template-columns: 320px 1fr;           
 }
 
 
@@ -173,4 +173,33 @@ input {
     margin-right: 5px;
     font-size: 19px;
     font-weight: 900;
+  }
+
+  .daily {
+    display: flex;
+    gap: 30px;
+    height: 150px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-right: 30px;
+  }
+
+
+  @media screen and (max-width: 600px) {
+    body {
+      grid-template-columns: 300px;  
+      grid-template-rows: 450px 750px;
+      background-repeat: repeat;    
+     }
+     .daily {
+      justify-content: flex-start;
+      padding-left: 20px;
+     }
+  }
+
+  .hourly {
+    display: flex;
+    flex-wrap: wrap;
+    gap:25px;
   }
