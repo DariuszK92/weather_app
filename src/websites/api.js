@@ -176,16 +176,30 @@ async function dailyWeather(a) {
 
 function createHoursAPI(array) {
     const hourlyWeatherContainer = document.querySelector('.hourly');
+    hourlyWeatherContainer.innerHTML = "";
     console.log(array)
     for(const hours of array) {
         for(const hour of hours) {
-            console.log(hour.time)
             const oneHourDiv = document.createElement('div');
             const d = new Date(hour.time);
             let thisHour = d.getHours();  
             const currentHour = document.createElement('div');
-            currentHour.innerText = thisHour;
-            oneHourDiv.appendChild(currentHour)
+            currentHour.classList.add('mid-size')
+            currentHour.innerText = `${thisHour}:00`;
+            const currentHourTemperature = document.createElement('div');
+            let tempUnits = localStorage.getItem('toggleTempUnits');
+            if(tempUnits == "false"){
+              currentHourTemperature.innerHTML = `${hour.temp_c}&#8451`
+            } else {
+              currentHourTemperature.innerHTML = `${hour.temp_f}&#8457`
+            }
+            let hourIconLength = hour.condition.icon.length;
+            let correctHourIcon = hour.condition.icon.slice(2, hourIconLength);
+            const currentHourIcon = document.createElement('img');
+            currentHourIcon.src  = `http://${correctHourIcon}`;
+            oneHourDiv.appendChild(currentHour);
+            oneHourDiv.appendChild(currentHourTemperature);
+            oneHourDiv.appendChild(currentHourIcon);
             hourlyWeatherContainer.appendChild(oneHourDiv)
         }
     }

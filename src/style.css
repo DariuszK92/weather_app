@@ -21,7 +21,11 @@ body {
     background-repeat:   no-repeat;
     background-position: center center;   
     display: grid;
-    grid-template-columns: 320px 1fr;           
+    grid-template-columns: 320px 1fr;
+    grid-template-areas:             
+    "a b"            
+    "c c";
+    grid-template-rows: repeat(3, auto);          
 }
 
 
@@ -33,6 +37,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding-left: 20px;
+    grid-area: a;
 }
 .searching {
     display: flex;
@@ -176,9 +181,9 @@ input {
   }
 
   .daily {
+    grid-area: b;
     display: flex;
     gap: 30px;
-    height: 150px;
     flex-wrap: wrap;
     justify-content: flex-end;
     margin-top: 20px;
@@ -186,19 +191,34 @@ input {
   }
 
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     body {
-      grid-template-columns: 300px;  
-      grid-template-rows: 450px 750px;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, auto);  
+      grid-template-rows: min-content; 
+      grid-auto-rows: min-content;
+      grid-template-areas:             
+      "a"            
+      "b"           
+      "c";
       background-repeat: repeat;    
      }
      .daily {
+      padding-top: 30px;
+      padding-bottom: 30px;
       justify-content: flex-start;
       padding-left: 20px;
+      height: 100%;
+      min-height: 0;
      }
   }
 
   .hourly {
+    grid-area: c;
+    margin-left: 30px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding-top: 40px;
     display: flex;
     flex-wrap: wrap;
     gap:25px;
