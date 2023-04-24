@@ -11,7 +11,7 @@ const currentHumidity = document.querySelector('#current-humidity');
 
 export async function showWeather() {
     const citySearched = localStorage.getItem('cityChosen');
-    const urlApi = `http://api.weatherapi.com/v1/current.json?key=b53f258c040d4673be784703231404&q=${citySearched}&aqi=no`;
+    const urlApi = `https://api.weatherapi.com/v1/current.json?key=b53f258c040d4673be784703231404&q=${citySearched}&aqi=no`;
     try {
         const response = await fetch(urlApi);
         const currentData = await response.json();
@@ -33,7 +33,7 @@ async function showCurrentStatus(currentData) {
     currentCondition.innerHTML = currentData.current.condition.text;
     let iconLength = await currentData.current.condition.icon.length;
     let correctIcon = await currentData.current.condition.icon.slice(2, iconLength);
-    currentIcon.src = await `http://${correctIcon}`;
+    currentIcon.src = await `https://${correctIcon}`;
     cityInput.value = '';
     errorPara.innerHTML = '';
     let unitsStored = localStorage.getItem('toggleTempUnits');
@@ -98,7 +98,7 @@ const hourlyWeatherContainer = document.querySelector('.hourly');
 
 async function dailyWeather(a) {
     const citySearched = localStorage.getItem('cityChosen');
-    const urlApi = `http://api.weatherapi.com/v1/forecast.json?key=b53f258c040d4673be784703231404&q=${citySearched}&days=7&aqi=no`;
+    const urlApi = `https://api.weatherapi.com/v1/forecast.json?key=b53f258c040d4673be784703231404&q=${citySearched}&days=7&aqi=no`;
     try {
         const response = await fetch(urlApi);
         const currentData = await response.json();
@@ -153,7 +153,7 @@ async function dailyWeather(a) {
             let correctIcon = day.day.condition.icon.slice(2, iconLength);
 
             const dayImg = document.createElement('img');
-            dayImg.src = await `http://${correctIcon}`;
+            dayImg.src = await `https://${correctIcon}`;
             dayDiv.appendChild(dayName);
             dayDiv.appendChild(dayMaxTemp);
             dayDiv.appendChild(dayMinTemp);
@@ -171,7 +171,7 @@ async function dailyWeather(a) {
 
 async function startHoursApicreation() {
     const citySearched = localStorage.getItem('cityChosen');
-    const urlApi = `http://api.weatherapi.com/v1/forecast.json?key=b53f258c040d4673be784703231404&q=${citySearched}&days=7&aqi=no`;
+    const urlApi = `https://api.weatherapi.com/v1/forecast.json?key=b53f258c040d4673be784703231404&q=${citySearched}&days=7&aqi=no`;
     try {
         const response = await fetch(urlApi);
         const currentData = await response.json();
@@ -213,7 +213,7 @@ function createHoursAPI(array) {
             let hourIconLength = hour.condition.icon.length;
             let correctHourIcon = hour.condition.icon.slice(2, hourIconLength);
             const currentHourIcon = document.createElement('img');
-            currentHourIcon.src = `http://${correctHourIcon}`;
+            currentHourIcon.src = `https://${correctHourIcon}`;
             oneHourDiv.appendChild(currentHour);
             oneHourDiv.appendChild(currentHourTemperature);
             oneHourDiv.appendChild(currentHourIcon);
