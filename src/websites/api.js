@@ -74,27 +74,27 @@ async function showCurrentStatus(currentData) {
 
 function setBackground(currentData) {
     let backImg = document.querySelector('body');
-    if (currentData.current.condition.text == 'Clear') {
-        backImg.style.backgroundImage = "url('../src/backgrounds/clear.jpg')";
-    } else if (currentData.current.condition.text == 'Partly cloudy') {
-        backImg.style.backgroundImage = "url('../src/backgrounds/partly-cloudy.jpg')";
-    } else if (currentData.current.condition.text == 'Sunny') {
-        backImg.style.backgroundImage = "url('../src/backgrounds/sunny.jpg')";
-    } else if (currentData.current.condition.text == 'Mist') {
-        backImg.style.backgroundImage = "url('../src/backgrounds/mist.jpg')";
-    } else if (currentData.current.condition.text == 'Overcast') {
-        backImg.style.backgroundImage = "url('../src/backgrounds/overcast.jpg')";
-    } else if (currentData.current.condition.text == 'Patchy rain possible') {
-        backImg.style.backgroundImage = "url('../src/backgrounds/patchy-rain.jpg')";
-    } else if (currentData.current.condition.text == 'Patchy rain possible') {
-        backImg.style.backgroundImage = "url('../src/backgrounds/patchy-rain.jpg')";
-    } else if (currentData.current.condition.text == 'Cloudy') {
-        backImg.style.backgroundImage = "url('../src/backgrounds/cloudy.jpg')";
-    } else if (currentData.current.condition.text == 'Moderate or heavy rain shower') {
-        backImg.style.backgroundImage = "url('../src/backgrounds/heavy-rain.jpg')";
-    } else {
-        backImg.style.backgroundImage = "url('../src/backgrounds/random.jpg')";
-    }
+    // if (currentData.current.condition.text == 'Clear') {
+    //     backImg.style.backgroundImage = 'url(clear)';
+    // } else if (currentData.current.condition.text == 'Partly cloudy') {
+    //     backImg.style.backgroundImage = "url('../src/backgrounds/partly-cloudy.jpg')";
+    // } else if (currentData.current.condition.text == 'Sunny') {
+    //     backImg.style.backgroundImage = "url('../src/backgrounds/sunny.jpg')";
+    // } else if (currentData.current.condition.text == 'Mist') {
+    //     backImg.style.backgroundImage = "url('../src/backgrounds/mist.jpg')";
+    // } else if (currentData.current.condition.text == 'Overcast') {
+    //     backImg.style.backgroundImage = "url('../src/backgrounds/overcast.jpg')";
+    // } else if (currentData.current.condition.text == 'Patchy rain possible') {
+    //     backImg.style.backgroundImage = "url('../src/backgrounds/patchy-rain.jpg')";
+    // } else if (currentData.current.condition.text == 'Patchy rain possible') {
+    //     backImg.style.backgroundImage = "url('../src/backgrounds/patchy-rain.jpg')";
+    // } else if (currentData.current.condition.text == 'Cloudy') {
+    //     backImg.style.backgroundImage = "url('../src/backgrounds/cloudy.jpg')";
+    // } else if (currentData.current.condition.text == 'Moderate or heavy rain shower') {
+    //     backImg.style.backgroundImage = "url('../src/backgrounds/heavy-rain.jpg')";
+    // } else {
+    backImg.style.backgroundImage = "url('../src/backgrounds/random.jpg')";
+    // }
 }
 
 const dailyWeatherContainer = document.querySelector('.daily');
