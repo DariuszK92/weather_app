@@ -93,7 +93,7 @@ function setBackground(currentData) {
     // } else if (currentData.current.condition.text == 'Moderate or heavy rain shower') {
     //     backImg.style.backgroundImage = "url('../src/backgrounds/heavy-rain.jpg')";
     // } else {
-    backImg.style.backgroundImage = "url('../src/backgrounds/random.jpg')";
+    // backImg.style.backgroundImage = "url('../src/backgrounds/random.jpg')";
     // }
 }
 
