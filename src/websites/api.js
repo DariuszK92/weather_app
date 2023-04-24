@@ -1,3 +1,5 @@
+import clear from '../backgrounds/clear.jpg';
+
 const cityName = document.querySelector('#city-name');
 const errorPara = document.querySelector('.error');
 const currentTime = document.querySelector('#current-hour');
