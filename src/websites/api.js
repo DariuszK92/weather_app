@@ -1,4 +1,6 @@
 import clear from '../backgrounds/clear.jpg';
+import cloudy from '../backgrounds/cloudy.jpg';
+import heavyRain from '../backgrounds/heavy-rain.jpg';
 
 const cityName = document.querySelector('#city-name');
 const errorPara = document.querySelector('.error');
