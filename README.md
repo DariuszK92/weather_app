@@ -1,6 +1,6 @@
 # weather_app
 
-Weather App created for The Odin Project course [Page preview](https://dariuszk92.github.io/weather-app/) :sunny: :cloud: :zap:
+Weather App created for The Odin Project course [Page preview](https://dariuszk92.github.io/weather_app/) :sunny: :cloud: :zap:
 
 ## General information
 
