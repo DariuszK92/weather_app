@@ -15,7 +15,7 @@ body {
     position: relative;
     object-fit: contain;
     margin: 0;
-    background-image: url('./backgrounds/random.jpg');
+    /*background-image: url('./backgrounds/random.jpg');*/
     color: whitesmoke;
     background-size:     cover;                      /* <------ */
     background-repeat:   no-repeat;
@@ -25,7 +25,18 @@ body {
     grid-template-areas:             
     "a b"            
     "c c";
-    grid-template-rows: repeat(3, auto);          
+    grid-template-rows: repeat(3, auto);     
+    background-color: green;
+    z-index: -2;
+         
+}
+
+.background-holder {
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  z-index: -1;
+  object-fit: cover;
 }
 
 
@@ -194,6 +205,11 @@ input {
 
   }
 
+  .toggle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
 
   @media screen and (max-width: 700px) {
     body {
@@ -232,13 +248,19 @@ input {
     gap:25px;
   }
 
-  .toggle-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
+
 
   .margins {
     margin-right: 50px;
     margin-top: 30px;
+  }
+
+  .big-font {
+    font-size: 20px;
+  }
+
+  .div-flex-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }

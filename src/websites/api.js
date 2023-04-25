@@ -1,6 +1,13 @@
 import clear from '../backgrounds/clear.jpg';
+import random from '../backgrounds/random.jpg';
 import cloudy from '../backgrounds/cloudy.jpg';
 import heavyRain from '../backgrounds/heavy-rain.jpg';
+import mist from '../backgrounds/mist.jpg';
+import overcast from '../backgrounds/overcast.jpg';
+import partlyCloudy from '../backgrounds/partly-cloudy.jpg';
+import patchyRain from '../backgrounds/patchy-rain.jpg';
+import rainstorm from '../backgrounds/rainstorm.jpg';
+import sunny from '../backgrounds/sunny.jpg';
 
 const cityName = document.querySelector('#city-name');
 const errorPara = document.querySelector('.error');
@@ -20,12 +27,14 @@ export async function showWeather() {
         const response = await fetch(urlApi);
         const currentData = await response.json();
         showCurrentStatus(currentData);
+        console.log('error?');
     } catch (error) {
-        showError(error);
+        console.log(error);
+        showError();
     }
 }
 
-function showError(error) {
+function showError() {
     errorPara.innerHTML = 'City you are searching does not exist, please try again';
     cityInput.value = '';
     cityName.innerHTML = '';
@@ -38,63 +47,68 @@ async function showCurrentStatus(currentData) {
     let iconLength = await currentData.current.condition.icon.length;
     let correctIcon = await currentData.current.condition.icon.slice(2, iconLength);
     currentIcon.src = await `https://${correctIcon}`;
-    cityInput.value = '';
-    errorPara.innerHTML = '';
-    let unitsStored = localStorage.getItem('toggleTempUnits');
-    if (unitsStored == 'false') {
-        currentTemp.innerHTML = `<span> ${currentData.current.temp_c} </span><span>&#8451</span>`;
-        currentWind.innerHTML = `<i class="fa-solid fa-wind"></i> Wind ${currentData.current.wind_kph} kph`;
-        currentFeels.innerHTML = `<i class="fa-solid fa-temperature-three-quarters"></i> <span>Feels like ${currentData.current.feelslike_c}</span><span>&#8451</span>`;
-    } else {
-        currentTemp.innerHTML = `<span>${currentData.current.temp_f}</span> <span>&#8457</span>`;
-        currentWind.innerHTML = `<i class="fa-solid fa-wind"></i> Wind ${currentData.current.wind_mph} mph`;
-        currentFeels.innerHTML = `<i class="fa-solid fa-temperature-three-quarters"></i> <span>Feels like ${currentData.current.feelslike_f}</span><span>&#8457</span>`;
-    }
-    currentHumidity.innerHTML = `<i class="fa-solid fa-droplet"></i> <span>Humidity ${currentData.current.humidity}</span><span>%</span>`;
-    setBackground(currentData);
+    try {
+        cityInput.value = '';
+        errorPara.innerHTML = '';
+        let unitsStored = localStorage.getItem('toggleTempUnits');
+        if (unitsStored == 'false') {
+            currentTemp.innerHTML = `<span> ${currentData.current.temp_c} </span><span>&#8451</span>`;
+            currentWind.innerHTML = `<i class="fa-solid fa-wind"></i> Wind ${currentData.current.wind_kph} kph`;
+            currentFeels.innerHTML = `<i class="fa-solid fa-temperature-three-quarters"></i> <span>Feels like ${currentData.current.feelslike_c}</span><span>&#8451</span>`;
+        } else {
+            currentTemp.innerHTML = `<span>${currentData.current.temp_f}</span> <span>&#8457</span>`;
+            currentWind.innerHTML = `<i class="fa-solid fa-wind"></i> Wind ${currentData.current.wind_mph} mph`;
+            currentFeels.innerHTML = `<i class="fa-solid fa-temperature-three-quarters"></i> <span>Feels like ${currentData.current.feelslike_f}</span><span>&#8457</span>`;
+        }
+        currentHumidity.innerHTML = `<i class="fa-solid fa-droplet"></i> <span>Humidity ${currentData.current.humidity}</span><span>%</span>`;
+        setBackground(currentData);
 
-    if (localStorage.getItem('toggleOptionChosen') === 'false') {
-        dailyWeather(currentData);
-        const dailyWeatherContainer = document.querySelector('.daily');
-        dailyWeatherContainer.style.display = 'flex';
-        const hourlyWeatherContainer = document.querySelector('.hourly');
-        hourlyWeatherContainer.style.display = 'none';
-
-        console.log('daily!');
-    } else {
-        startHoursApicreation();
-        const dailyWeatherContainer = document.querySelector('.daily');
-        dailyWeatherContainer.style.display = 'none';
-        const hourlyWeatherContainer = document.querySelector('.hourly');
-        hourlyWeatherContainer.style.display = 'flex';
-        const optionToggle = document.querySelector('#checkbox2');
-        optionToggle.checked = true;
+        if (localStorage.getItem('toggleOptionChosen') === 'false') {
+            dailyWeather(currentData);
+            const dailyWeatherContainer = document.querySelector('.daily');
+            dailyWeatherContainer.style.display = 'flex';
+            const hourlyWeatherContainer = document.querySelector('.hourly');
+            hourlyWeatherContainer.style.display = 'none';
+        } else {
+            startHoursApicreation();
+            const dailyWeatherContainer = document.querySelector('.daily');
+            dailyWeatherContainer.style.display = 'none';
+            const hourlyWeatherContainer = document.querySelector('.hourly');
+            hourlyWeatherContainer.style.display = 'flex';
+            const optionToggle = document.querySelector('#checkbox2');
+            optionToggle.checked = true;
+        }
+    } catch (error) {
+        showError();
     }
 }
 
 function setBackground(currentData) {
-    let backImg = document.querySelector('body');
-    // if (currentData.current.condition.text == 'Clear') {
-    //     backImg.style.backgroundImage = 'url(clear)';
-    // } else if (currentData.current.condition.text == 'Partly cloudy') {
-    //     backImg.style.backgroundImage = "url('../src/backgrounds/partly-cloudy.jpg')";
-    // } else if (currentData.current.condition.text == 'Sunny') {
-    //     backImg.style.backgroundImage = "url('../src/backgrounds/sunny.jpg')";
-    // } else if (currentData.current.condition.text == 'Mist') {
-    //     backImg.style.backgroundImage = "url('../src/backgrounds/mist.jpg')";
-    // } else if (currentData.current.condition.text == 'Overcast') {
-    //     backImg.style.backgroundImage = "url('../src/backgrounds/overcast.jpg')";
-    // } else if (currentData.current.condition.text == 'Patchy rain possible') {
-    //     backImg.style.backgroundImage = "url('../src/backgrounds/patchy-rain.jpg')";
-    // } else if (currentData.current.condition.text == 'Patchy rain possible') {
-    //     backImg.style.backgroundImage = "url('../src/backgrounds/patchy-rain.jpg')";
-    // } else if (currentData.current.condition.text == 'Cloudy') {
-    //     backImg.style.backgroundImage = "url('../src/backgrounds/cloudy.jpg')";
-    // } else if (currentData.current.condition.text == 'Moderate or heavy rain shower') {
-    //     backImg.style.backgroundImage = "url('../src/backgrounds/heavy-rain.jpg')";
-    // } else {
-    // backImg.style.backgroundImage = "url('../src/backgrounds/random.jpg')";
-    // }
+    const backgroundHolder = document.querySelector('.background-holder');
+    if (currentData.current.condition.text == 'Clear') {
+        backgroundHolder.src = clear;
+    } else if (currentData.current.condition.text == 'Partly cloudy') {
+        backgroundHolder.src = partlyCloudy;
+    } else if (currentData.current.condition.text == 'Sunny') {
+        backgroundHolder.src = sunny;
+    } else if (currentData.current.condition.text == 'Mist') {
+        backgroundHolder.src = mist;
+    } else if (currentData.current.condition.text == 'Overcast') {
+        backgroundHolder.src = overcast;
+    } else if (
+        currentData.current.condition.text == 'Patchy rain possible' ||
+        currentData.current.condition.text == 'Light rain'
+    ) {
+        backgroundHolder.src = patchyRain;
+    } else if (currentData.current.condition.text == 'Rainstorm') {
+        backgroundHolder.src = rainstorm;
+    } else if (currentData.current.condition.text == 'Cloudy') {
+        backgroundHolder.src = cloudy;
+    } else if (currentData.current.condition.text == 'Moderate or heavy rain shower') {
+        backgroundHolder.src = heavyRain;
+    } else {
+        backgroundHolder.src = random;
+    }
 }
 
 const dailyWeatherContainer = document.querySelector('.daily');
@@ -138,11 +152,12 @@ async function dailyWeather(a) {
             }
 
             const dayDiv = document.createElement('div');
-
+            dayDiv.classList.add('div-flex-center');
             const dayName = document.createElement('div');
             dayName.classList.add('mid-size');
             dayName.textContent = todayName;
             const dayMaxTemp = document.createElement('div');
+            dayMaxTemp.classList.add('big-font');
             const dayMinTemp = document.createElement('div');
             let unitsStored = localStorage.getItem('toggleTempUnits');
             if (unitsStored == 'false') {
@@ -169,7 +184,6 @@ async function dailyWeather(a) {
         //end of hour loop
     } catch (error) {
         showError(error);
-        console.log('hey');
     }
 }
 
@@ -194,7 +208,6 @@ async function startHoursApicreation() {
         createHoursAPI(tomorrowLeftHours);
     } catch (error) {
         showError(error);
-        console.log('hey');
     }
 }
 
@@ -202,6 +215,7 @@ function createHoursAPI(array) {
     for (const hours of array) {
         for (const hour of hours) {
             const oneHourDiv = document.createElement('div');
+            oneHourDiv.classList.add('div-flex-center');
             const d = new Date(hour.time);
             let thisHour = d.getHours();
             const currentHour = document.createElement('div');
